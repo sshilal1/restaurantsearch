@@ -1,6 +1,12 @@
 import React from 'react';
+
 import RestaurantEntry from './RestaurantEntry';
 import ThomasBar from './ThomasBar';
+import Searcher from './Searcher';
+import CardRow from './CardRow';
+import './app.css';
+
+import {Jumbotron} from 'reactstrap';
 
 class Main extends React.Component {
 
@@ -33,26 +39,48 @@ class Main extends React.Component {
 				type: "Mexican",
 				price: 2,
 				rating: "C"
+			},
+			{
+				id: 65462,
+				name: "kkkkkk",
+				address: "251 W 5th st, New York, NY",
+				num: "(845)-436-4593",
+				type: "Mexican",
+				price: 1,
+				rating: "A"
+			},
+			{
+				id: 15327,
+				name: "Dos Caminos",
+				address: "251 W 800th, New York, NY",
+				num: "(845)-fdf-4593",
+				type: "Mexican",
+				price: 3,
+				rating: "B"
 			}]
 		}
 	}
 	render() {
 
 		const { restaurants } = this.state;
+		const len = restaurants.length;
 
-		console.log(restaurants);
-
-		const RestaurantEntries = restaurants.map((restaurant, index) => {
-			return <RestaurantEntry key={restaurant.id} {...restaurant}/>
-		});
+		var CardRows = [];
+		var Restaurants = [];
+		for (let i=0; i<len; i++) {
+			Restaurants.push(restaurants[i]);
+			if (i%3 === 2 || i === (len-1)) {
+				CardRows.push(<CardRow restaurants={Restaurants}></CardRow>)
+				Restaurants = [];
+			}
+		}
 
 		return (
 			<div>
-				<ThomasBar/>
-				<div class="container">
-					<div class="row">
-						{RestaurantEntries}
-					</div>
+				<ThomasBar search={true}/>
+				<Searcher/>
+				<div className="container">
+					{CardRows}
 				</div>
 				<ThomasBar/>
 			</div>
