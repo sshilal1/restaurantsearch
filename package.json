@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sshilal1/restaurantsearch/issues"
   },
-  "homepage": "https://github.com/sshilal1/restaurantsearch#readme"
+  "homepage": "https://github.com/sshilal1/restaurantsearch#readme",
+  "dependencies": {
+    "mongoose": "^4.13.0"
+  }
 }
