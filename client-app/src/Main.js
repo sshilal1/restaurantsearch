@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Button,Navbar,NavbarBrand } from 'reactstrap';
+import React from 'react';
 import RestaurantEntry from './RestaurantEntry';
 import ThomasBar from './ThomasBar';
 
