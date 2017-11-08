@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Navbar, InputGroup, InputGroupAddon, Input} from 'reactstrap';
-import logo from './thomas_logo.png';
-import search from './images/glyphicons-28-search.png';
-import './app.css';
+import logo from '../images/thomas_logo.png';
+import search from '../images/glyphicons-28-search.png';
 
 class ThomasBar extends Component {
 	render() {

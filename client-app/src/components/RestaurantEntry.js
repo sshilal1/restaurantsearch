@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody } from 'reactstrap';
-import './app.css';
 
-import seal from './images/seals/Nyc-seal-blue.png';
+import seal from '../images/seals/Nyc-seal-blue.png';
 
 class RestaurantEntry extends Component {
 	render() {
 
 		const { name,type,price,address,num,rating } = this.props;
 
-		var rank = require('./images/letters/'+rating.toLowerCase()+'.png');
+		var rank = require('../images/letters/'+rating.toLowerCase()+'.png');
 		var dollars = '$'.repeat(price);
 
 		return (

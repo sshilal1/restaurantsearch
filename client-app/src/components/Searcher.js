@@ -1,6 +1,5 @@
 import React from 'react';
 import {Jumbotron} from 'reactstrap';
-import './app.css';
 
 class Searcher extends React.Component {
 	render() {

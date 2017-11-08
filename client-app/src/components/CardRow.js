@@ -1,7 +1,6 @@
 import React from 'react';
 
 import RestaurantEntry from './RestaurantEntry';
-import './app.css';
 
 class CardRow extends React.Component {
 	render() {

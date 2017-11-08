@@ -1,9 +1,8 @@
 import React from 'react';
 
-import RestaurantEntry from './RestaurantEntry';
-import ThomasBar from './ThomasBar';
-import Searcher from './Searcher';
-import CardRow from './CardRow';
+import ThomasBar from './components/ThomasBar';
+import Searcher from './components/Searcher';
+import CardRow from './components/CardRow';
 import './app.css';
 
 import {Jumbotron} from 'reactstrap';
