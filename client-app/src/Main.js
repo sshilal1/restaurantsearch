@@ -76,7 +76,7 @@ class Main extends React.Component {
 
 		return (
 			<div>
-				<ThomasBar search={true}/>
+				<ThomasBar search={false}/>
 				<Searcher/>
 				<div className="container">
 					{CardRows}
