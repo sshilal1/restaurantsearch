@@ -1,5 +1,11 @@
+body {
+	font-family: "Helvetica", "Arial", sans-serif;
+	color: #555;
+}
+
 .flex {
 	display: flex;
+	justify-content: center;
 }
 
 #search-bar {
@@ -53,7 +59,35 @@
 
 .searcher {
 	border-radius: 0;
-	height: 200px;
+	height: 290px;
+}
+
+.sort-button {
+	width: 100px;
+	color: white;
+	background-color: #49b0e4;
+	border-radius: 0;
+	border: none;
+	margin: 0px 5px;
+	padding: 5px 5px;
+}
+
+.wide {
+	width:100%;
+	background-size:cover;
+}
+
+.wide img {
+	width:100%;
+}
+
+.textish {
+	background: white;
+	width: fit-content;
+	padding: 5px 10px;
+	margin: 5px;
+	font-size: 35px;
+	font-weight: bold;
 }
 
 .gradience {

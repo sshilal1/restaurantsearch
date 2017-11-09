@@ -12,7 +12,7 @@ class CardRow extends React.Component {
 		});
 
 		return (
-			<div className="card-deck">
+			<div className="card-deck flex">
 				{Restaurants}
 			</div>
 		);
