@@ -3,23 +3,7 @@ import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
 import seal from '../images/seals/Nyc-seal-blue.png';
 
-class RestaurantEntry extends Component {
-
-	constructor() {
-		super();
-		this.togglePop = this.togglePop.bind(this);
-
-		this.state = {
-			popoverOpen: false
-		};
-	}
-
-	togglePop() {
-		this.setState({
-			popoverOpen: !this.state.popoverOpen
-		});
-	}
-
+class RestaurantPopup extends Component {
 	render() {
 
 		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro } = this.props;
@@ -40,7 +24,7 @@ class RestaurantEntry extends Component {
 		}
 
 		return (
-			<Card onClick={this.togglePop} style={{maxWidth:"400px"}}>
+			<Card style={{maxWidth:"400px"}}>
 				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
@@ -55,6 +39,7 @@ class RestaurantEntry extends Component {
 						<div className="inspection-date">{month} &#183; {day} &#183; {year}</div>
 					</div>
 				</CardBody>
+				
 			</Card>
 		);
 	}
@@ -68,4 +53,4 @@ function titleCase(str) {
 	return str.join(' ');
 }
 
-export default RestaurantEntry;
+export default RestaurantPopup;

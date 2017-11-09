@@ -11,39 +11,81 @@ body {
 #search-bar {
 	border-radius: 0;
 	margin-right: 10px;
-	width: 400px;
+	width: 580px;
+	height: 55px
 }
 
 #search-button {
 	margin-left: 10px;
+	width: 120px;
+	height: 55px;
 	background: #6eb441;
-	background: -webkit-linear-gradient(left, #6eb441 , #8abd5c); /* For Safari 5.1 to 6.0 */
-	background: -o-linear-gradient(right, #6eb441, #8abd5c); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(right, #6eb441, #8abd5c); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(to right, #6eb441 , #8abd5c); /* Standard syntax */
+	background: -webkit-linear-gradient(left, #6eb441 , #8abd5c);
+	background: -o-linear-gradient(right, #6eb441, #8abd5c);
+	background: -moz-linear-gradient(right, #6eb441, #8abd5c);
+	background: linear-gradient(to right, #6eb441 , #8abd5c);
 }
 
 .card, .card-deck {
 	margin-top: 15px;
 	margin-bottom: 15px;
+	border-radius: 0;
+}
+
+.card-img {
+	border-radius: 0;
 }
 
 .rank-box {
 	position: absolute;
-	top: calc(50% - 50px);
+	top: calc(50% - 70px);
 	left: calc(90% - 120px);
 	width: 130px;
 	height: 140px;
 	background: white;
 	border: black;
 	box-shadow: 2px 3px 7px grey;
+	align-items: center;
 }
 
 .rank-img {
 	position: absolute;
-	left: calc(50% - 60px);
 	width:120px;
 	padding:15px;
+	padding-top: 0;
+}
+
+.big-box {
+	width: 280px;
+	height: 280px;
+	background: white;
+	border: black;
+	box-shadow: 2px 3px 7px grey;
+	align-items: center;
+}
+
+.big-rank-img {
+	position: absolute;
+	width:240px;
+	padding:15px;
+}
+
+.seal {
+	opacity: .6;
+}
+
+.a {
+	width: 160px;
+}
+.b, .c {
+	width: 150px;
+}
+
+.a-sm, .c-sm {
+	width: 110px;
+}
+.b-sm, .z-sm {
+	width: 100px;
 }
 
 .inspection-date {
@@ -62,6 +104,14 @@ body {
 	height: 290px;
 }
 
+.home-searcher {
+	margin-bottom: 0;
+	border-radius: 0;
+	height: 625px;
+	display: flex;
+	align-items: center;
+}
+
 .sort-button {
 	width: 100px;
 	color: white;
@@ -77,10 +127,6 @@ body {
 	background-size:cover;
 }
 
-.wide img {
-	width:100%;
-}
-
 .textish {
 	background: white;
 	width: fit-content;
@@ -91,11 +137,14 @@ body {
 }
 
 .gradience {
+	margin-bottom: 0;
 	background: #06344e; /* For browsers that do not support gradients */
 	background: -webkit-linear-gradient(left, #06344e , #034162); /* For Safari 5.1 to 6.0 */
 	background: -o-linear-gradient(right, #06344e, #034162); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(right, #06344e, #034162); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(to right, #06344e , #034162); /* Standard syntax */
+	display: flex;
+	align-items: center;
 }
 
 @media (min-width: 576px) {

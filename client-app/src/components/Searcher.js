@@ -1,5 +1,5 @@
 import React from 'react';
-import {Jumbotron, Button, InputGroup, InputGroupAddon, Input, Form, FormGroup} from 'reactstrap';
+import {Jumbotron, Button, Input, Form, FormGroup} from 'reactstrap';
 
 import bgimage from '../images/image_5.jpg';
 
@@ -59,15 +59,13 @@ class Searcher extends React.Component {
 					<div className="container">
 						<div className="col-12">
 							<h1 style={{textAlign:"center", color:"white"}}>NYC Restaurants</h1>
-						</div>
-						
+						</div>					
 						<Form inline className="flex justify-content-center" onSubmit={this.handleSubmit}>
-        			<FormGroup>
+							<FormGroup>
 								<Input id="search-bar" onChange={this.handleInputChange}/>
 								<Button id="search-button">Search</Button>
 							</FormGroup>
 						</Form>
-						
 					</div>
 				</Jumbotron>
 			);

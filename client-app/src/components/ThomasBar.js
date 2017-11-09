@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Navbar, InputGroup, InputGroupAddon, Input} from 'reactstrap';
+import {Navbar, InputGroup, InputGroupAddon, Input, Form} from 'reactstrap';
 import logo from '../images/thomas_logo.png';
 import search from '../images/glyphicons-28-search.png';
 
@@ -13,6 +13,7 @@ class ThomasBar extends Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.returnToHome = this.returnToHome.bind(this);
 	}
 
 	handleInputChange(event) {
@@ -23,10 +24,13 @@ class ThomasBar extends Component {
 
 	handleSubmit(event) {
 		var searchtext = this.state.searchtext;
-		console.log(searchtext)
-
 		event.preventDefault();
 		this.props.onSearch(searchtext);
+	}
+
+	// This function returns the user to the home page
+	returnToHome() {
+		this.props.returnHome();
 	}
 
 	render() {
@@ -37,11 +41,13 @@ class ThomasBar extends Component {
 			return (
 				<Navbar style={{background: "#06344e"}}>
 					<div className="container">
-						<img style={{width:"185px"}} src={logo} alt="logo"/>
-						<InputGroup style={{width:"33%"}}>
-							<Input placeholder={this.props.searchtext} onChange={this.handleInputChange}/>
-							<InputGroupAddon onClick={this.handleSubmit}><img style={{width:"15px"}} src={search} alt="search"/></InputGroupAddon>
-						</InputGroup>
+						<img style={{width:"180px",cursor:"pointer"}} src={logo} alt="logo" onClick={this.returnToHome}/>	
+						<Form inline className="flex justify-content-center" style={{width:"33%"}} onSubmit={this.handleSubmit}>
+							<InputGroup>
+								<Input placeholder={searchtext} onChange={this.handleInputChange}/>
+								<InputGroupAddon onClick={this.handleSubmit}><img style={{width:"15px"}} src={search} alt="search"/></InputGroupAddon>
+							</InputGroup>
+						</Form>
 					</div>
 				</Navbar>
 			);
@@ -50,7 +56,7 @@ class ThomasBar extends Component {
 			return (
 				<Navbar style={{background: "#06344e"}}>
 					<div className="container">
-						<img style={{width:"180px"}} src={logo} alt="logo"/>
+						<img style={{width:"180px",cursor:"pointer"}} src={logo} alt="logo" onClick={this.returnToHome}/>
 					</div>
 				</Navbar>
 			);
@@ -59,5 +65,3 @@ class ThomasBar extends Component {
 }
 
 export default ThomasBar;
-
-
