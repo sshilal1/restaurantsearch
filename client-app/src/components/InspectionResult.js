@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardText, CardBody } from 'reactstrap';
+import { CardText } from 'reactstrap';
 
 class InspectionResult extends React.Component {
 	render() {
@@ -53,5 +53,3 @@ function getDateObj(datestring) {
 }
 
 export default InspectionResult;
-
-

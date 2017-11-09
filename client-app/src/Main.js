@@ -39,12 +39,12 @@ class Main extends React.Component {
 		})
 		.then( (response) => {
 			console.log(response.data);
-			if (response.data.length > 0) {
+
 				this.setState({
 					restaurants : response.data,
 					search : true
 				})
-			}
+
 		})
 		.catch(function (error) {
 			console.log(error);

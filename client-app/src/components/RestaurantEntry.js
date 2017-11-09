@@ -3,6 +3,7 @@ import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
 import RestaurantPopup from './RestaurantPopup';
 import seal from '../images/seals/Nyc-seal-blue.png';
+import {titleCase, getDateObj} from '../helpers';
 
 class RestaurantEntry extends Component {
 
@@ -23,16 +24,14 @@ class RestaurantEntry extends Component {
 
 	render() {
 
-		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro,inspections } = this.props;
+		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro } = this.props;
 
-		var standard = grade === 'Not Yet Graded' ? 'GP' : grade.toLowerCase();
+		var standard = (grade === 'Not Yet Graded' || grade === null) ? 'GP' : grade.toLowerCase();
 		var rank = require('../images/letters/'+standard+'.png');
 		var dollars = '$'.repeat(3);
 		var number = `(${phone.substring(0,3)}) ${phone.substring(3,6)}-${phone.substring(6,10)}`;
 		var address = titleCase(`${building} ${street}, ${boro}`) + `, NY ${zipcode}`;
-		var day = gradeDate.substring(8,10);
-		var month = gradeDate.substring(5,7);
-		var year = gradeDate.substring(0,4);
+		var dateobj = getDateObj(gradeDate);
 		var classn = `rank-img ${standard}-sm`;
 
 		var textStyle = {
@@ -56,7 +55,7 @@ class RestaurantEntry extends Component {
 
 		return (
 			<Card onClick={this.togglePop} style={{maxWidth:"400px"}}>
-				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
+				<div style={{width:"100%",height:"250px", overflow:"hidden"}}>
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
 				<CardBody>
@@ -67,21 +66,13 @@ class RestaurantEntry extends Component {
 					<div className="rank-box flex">
 						<img className="rank-img seal" src={seal} alt="search"/>
 						<img className={classn} src={rank} alt="search"/>
-						<div className="inspection-date">{month} &#183; {day} &#183; {year}</div>
+						<div className="inspection-date">{dateobj.month} &#183; {dateobj.day} &#183; {dateobj.year}</div>
 					</div>
 				</CardBody>
 				{popOver}
 			</Card>
 		);
 	}
-}
-
-function titleCase(str) {
-	str = str.toLowerCase().split(' ');
-	for (var i = 0; i < str.length; i++) {
-		str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
-	}
-	return str.join(' ');
 }
 
 export default RestaurantEntry;

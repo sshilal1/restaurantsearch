@@ -35,17 +35,23 @@ class ThomasBar extends Component {
 
 	render() {
 
-		const {searchtext} = this.state;
+		const searchtext = this.props.searchtext;
+
+		var bordStyle = {
+			borderRadius: 0,
+			border: "none",
+			background: "white"
+		}
 
 		if (this.props.search) {
 			return (
 				<Navbar style={{background: "#06344e"}}>
 					<div className="container">
 						<img style={{width:"180px",cursor:"pointer"}} src={logo} alt="logo" onClick={this.returnToHome}/>	
-						<Form inline className="flex justify-content-center" style={{width:"33%"}} onSubmit={this.handleSubmit}>
-							<InputGroup>
-								<Input placeholder={searchtext} onChange={this.handleInputChange}/>
-								<InputGroupAddon onClick={this.handleSubmit}><img style={{width:"15px"}} src={search} alt="search"/></InputGroupAddon>
+						<Form inline className="flex justify-content-center" style={{width:"530px"}} onSubmit={this.handleSubmit}>
+							<InputGroup style={{width:"100%"}}>
+								<Input style={bordStyle} placeholder={searchtext} onChange={this.handleInputChange}/>
+								<InputGroupAddon style={bordStyle} onClick={this.handleSubmit}><img style={{width:"15px"}} src={search} alt="search"/></InputGroupAddon>
 							</InputGroup>
 						</Form>
 					</div>

@@ -3,20 +3,18 @@ import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
 import InspectionResult from './InspectionResult';
 import seal from '../images/seals/Nyc-seal-blue.png';
+import {titleCase} from '../helpers';
 
 class RestaurantPopup extends Component {
 	render() {
 
-		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro,inspections } = this.props;
+		const { name,cuisine,street,phone,grade,building,zipcode,imageUrl,boro,inspections } = this.props;
 
-		var standard = grade === 'Not Yet Graded' ? 'GP' : grade.toLowerCase();
+		var standard = (grade === 'Not Yet Graded' || grade === null) ? 'GP' : grade.toLowerCase();
 		var rank = require('../images/letters/'+standard+'.png');
 		var dollars = '$'.repeat(3);
 		var number = `(${phone.substring(0,3)}) ${phone.substring(3,6)}-${phone.substring(6,10)}`;
 		var address = titleCase(`${building} ${street}, ${boro}`) + `, NY ${zipcode}`;
-		var day = gradeDate.substring(8,10);
-		var month = gradeDate.substring(5,7);
-		var year = gradeDate.substring(0,4);
 		var classn = `rank-img ${standard}-sm`;
 
 		var textStyle = {
@@ -51,14 +49,6 @@ class RestaurantPopup extends Component {
 			</Card>
 		);
 	}
-}
-
-function titleCase(str) {
-	str = str.toLowerCase().split(' ');
-	for (var i = 0; i < str.length; i++) {
-		str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
-	}
-	return str.join(' ');
 }
 
 export default RestaurantPopup;
