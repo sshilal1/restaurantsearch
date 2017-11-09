@@ -37,11 +37,17 @@ class Searcher extends React.Component {
 				backgroundPosition : "64%"
 			}
 
+			var sStyle = {
+				fontStyle: "italic",
+				backgroundColor: "#49b0e4",
+				color: "white"
+			}
+
 			return (
 				<Jumbotron className="wide searcher" style={bgStyle}>
 					<div className="container">
-						<div className="textish">Search:</div>
-						<div className="textish" style={{fontStyle: "italic"}}>{this.props.searchtext.toUpperCase()}</div>
+						<div className="textish" style={{color:"grey"}}>Search:</div>
+						<div className="textish" style={sStyle}>{this.props.searchtext.toUpperCase()}</div>
 					</div>
 				</Jumbotron>
 			);

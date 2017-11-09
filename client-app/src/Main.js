@@ -30,9 +30,7 @@ class Main extends React.Component {
 			text: searchtext
 		})
 		.then( (response) => {
-			for(let i=0; i<response.data.length; i++) {
-				console.log(response.data[i].grade);
-			}
+			console.log(response.data);
 			this.setState({
 				restaurants : response.data
 			})

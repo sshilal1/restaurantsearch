@@ -8,11 +8,11 @@ var Restaurants = require('./restaurantModel.js');
 var getDbObjects = function(searchtext) {
 	return new Promise((resolve,reject) => {
 		
-		var searchstring = ".*" + searchtext + ".*";
+		var searchstring = ".*" + searchtext.toLowerCase() + ".*";
 		
 		Restaurants
 			.find({searchText: {$regex : searchstring}})
-			.limit(50)
+			.limit(12)
 			.exec(function(err, results) {
 				if (err) reject(err);
 				
