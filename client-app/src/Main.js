@@ -18,6 +18,7 @@ class Main extends React.Component {
 
 		this.searchRestaurants = this.searchRestaurants.bind(this);
 		this.returnHome = this.returnHome.bind(this);
+		this.sortByGrade = this.sortByGrade.bind(this);
 	}
 
 	// This function returns the user to the home page by clearing all state variables
@@ -26,6 +27,31 @@ class Main extends React.Component {
 			restaurants: [],
 			searchtext : "",
 			search : false
+		})
+	}
+
+	sortByGrade(order) {
+		var restaurants = this.state.restaurants;
+		if (order === "asc") {
+			restaurants.sort(function(a, b) {
+				var nameA = (a.grade === 'Not Yet Graded' || a.grade === null) ? 'Z' : a.grade;
+				var nameB = (b.grade === 'Not Yet Graded' || b.grade === null) ? 'Z' : b.grade;
+				if (nameA < nameB) { return -1; }
+				if (nameA > nameB) { return 1; }
+				return 0;
+			});
+		}
+		else if (order === "desc") {
+			restaurants.sort(function(a, b) {
+				var nameA = (a.grade === 'Not Yet Graded' || a.grade === null) ? 'Z' : a.grade;
+				var nameB = (b.grade === 'Not Yet Graded' || b.grade === null) ? 'Z' : b.grade;
+				if (nameA > nameB) { return -1; }
+				if (nameA < nameB) { return 1; }
+				return 0;
+			});
+		}
+		this.setState({
+			restaurants : restaurants
 		})
 	}
 
@@ -39,12 +65,11 @@ class Main extends React.Component {
 		})
 		.then( (response) => {
 			console.log(response.data);
-
-				this.setState({
-					restaurants : response.data,
-					search : true
-				})
-
+			this.setState({
+				restaurants : response.data,
+				search : true
+			})
+			this.sortByGrade("asc");
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -59,7 +84,7 @@ class Main extends React.Component {
 			<div>	
 				<ThomasBar search={search} searchtext={searchtext} onSearch={this.searchRestaurants} returnHome={this.returnHome}/>
 				<Searcher search={search} searchtext={searchtext} onSearch={this.searchRestaurants}/>
-				<MiddlePage search={search} restaurants={restaurants}/>
+				<MiddlePage search={search} restaurants={restaurants} sortGrade={this.sortByGrade}/>
 				<ThomasBar returnHome={this.returnHome}/>
 			</div>
 		);

@@ -22,7 +22,14 @@ class MiddlePage extends React.Component {
 	}
 
 	sortGrade() {
+		const order = this.state.gradeorder;
+		var nextorder = (order === "asc" ? "desc" : "asc");
 
+		this.setState({
+			gradeorder: nextorder
+		})
+
+		this.props.sortGrade(nextorder);
 	}
 
 	render() {
@@ -41,12 +48,13 @@ class MiddlePage extends React.Component {
 					Restaurants = [];
 				}
 			}
-
+			
+			var gradeDirection = (this.state.gradeorder === "asc" ? String.fromCharCode(0x25BC) : String.fromCharCode(0x25B2))
 			var viewString = `Viewing 1-12 of ${len}`;
 
 			return (
 				<div className="container">
-							<Button className="sort-button" onClick={this.sortGrade} style={{marginLeft: 0}}>Grade  &#9650;</Button>
+							<Button className="sort-button" onClick={this.sortGrade} style={{marginLeft: 0}}>Grade {gradeDirection}</Button>
 							<Button className="sort-button">Price  &#9660;</Button>
 							<div className="view-counter">{viewString}</div>
 						{CardRows}
