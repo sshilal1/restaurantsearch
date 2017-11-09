@@ -1,5 +1,5 @@
 body {
-	font-family: "Helvetica", "Arial", sans-serif;
+	font-family: 'Cabin', sans-serif;
 	color: #555;
 }
 
@@ -147,9 +147,38 @@ body {
 	align-items: center;
 }
 
-@media (min-width: 576px) {
+.overlay {
+	opacity:0.6;
+	filter: alpha(opacity=20);
+	background-color:#000; 
+	width:100%; 
+	height:100%; 
+	z-index:10;
+	top:0; 
+	left:0; 
+	position:fixed; 
+}
+.restaurant-pop {
+	position: fixed;
+	width: 850px;
+	height: 700px;
+	left: calc(50% - 425px);
+	top: calc(50% - 350px);
+	z-index: 11;
+}
+
+.view-counter {
+	display:inline-block;
+	float: right;
+}
+
+@media (max-width: 576px) {
 	.card-columns {
 		column-count: 2;
+	}
+	.view-counter {
+		display:inline-block;
+		float: none;
 	}
 }
 

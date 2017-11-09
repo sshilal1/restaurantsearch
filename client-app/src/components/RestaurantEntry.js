@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
+import RestaurantPopup from './RestaurantPopup';
 import seal from '../images/seals/Nyc-seal-blue.png';
 
 class RestaurantEntry extends Component {
@@ -22,7 +23,7 @@ class RestaurantEntry extends Component {
 
 	render() {
 
-		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro } = this.props;
+		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro,inspections } = this.props;
 
 		var standard = grade === 'Not Yet Graded' ? 'GP' : grade.toLowerCase();
 		var rank = require('../images/letters/'+standard+'.png');
@@ -39,13 +40,27 @@ class RestaurantEntry extends Component {
     	marginBottom: ".2em"
 		}
 
+		if (this.state.popoverOpen) {
+			var popOver = (
+				<div>
+					<div className="restaurant-pop">
+						<RestaurantPopup {...this.props}/>
+					</div>
+					<div className="overlay"></div>
+				</div>
+			);
+		}
+		else {
+			var popOver = null;
+		}
+
 		return (
 			<Card onClick={this.togglePop} style={{maxWidth:"400px"}}>
 				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
 				<CardBody>
-					<h6 style={{fontWeight:"bold",color:"#14608a"}}>{titleCase(name)}</h6>
+					<h6 style={{fontWeight:"bold",color:"#00334d"}}>{titleCase(name)}</h6>
 					<CardText style={{...textStyle, color:"grey"}}>{cuisine} &middot; {dollars}</CardText>
 					<CardText style={textStyle}>{address}</CardText>
 					<CardText style={textStyle}>{number}</CardText>
@@ -55,6 +70,7 @@ class RestaurantEntry extends Component {
 						<div className="inspection-date">{month} &#183; {day} &#183; {year}</div>
 					</div>
 				</CardBody>
+				{popOver}
 			</Card>
 		);
 	}

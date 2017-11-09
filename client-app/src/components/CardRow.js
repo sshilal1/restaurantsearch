@@ -8,7 +8,7 @@ class CardRow extends React.Component {
 		const restaurants = this.props.restaurants;
 
 		var Restaurants = restaurants.map((restaurant) => {
-				return <RestaurantEntry key={restaurant.id} {...restaurant}/>
+				return <RestaurantEntry key={restaurant._id} {...restaurant}/>
 		});
 
 		return (

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody } from 'reactstrap';
 
+import InspectionResult from './InspectionResult';
 import seal from '../images/seals/Nyc-seal-blue.png';
 
 class RestaurantPopup extends Component {
 	render() {
 
-		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro } = this.props;
+		const { name,cuisine,street,phone,grade,gradeDate,building,zipcode,imageUrl,boro,inspections } = this.props;
 
 		var standard = grade === 'Not Yet Graded' ? 'GP' : grade.toLowerCase();
 		var rank = require('../images/letters/'+standard+'.png');
@@ -23,23 +24,30 @@ class RestaurantPopup extends Component {
     	marginBottom: ".2em"
 		}
 
+		var Inspections = inspections.map((inspection,index) => {
+				return <InspectionResult key={index} {...inspection}/>
+		});
+
 		return (
-			<Card style={{maxWidth:"400px"}}>
+			<Card style={{border: "none"}}>
 				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
-				<CardBody>
-					<h6 style={{fontWeight:"bold",color:"#14608a"}}>{titleCase(name)}</h6>
+				<CardBody style={{height:"150px"}}>
+					<h1 style={{fontWeight:"bold",color:"#00334d"}}>{titleCase(name)}</h1>
 					<CardText style={{...textStyle, color:"grey"}}>{cuisine} &middot; {dollars}</CardText>
 					<CardText style={textStyle}>{address}</CardText>
 					<CardText style={textStyle}>{number}</CardText>
-					<div className="rank-box flex">
+					<div className="rank-box flex" style={{boxShadow:"none",top:"calc(50% - 90px)",left: "calc(90% - 60px)"}}>
 						<img className="rank-img seal" src={seal} alt="search"/>
 						<img className={classn} src={rank} alt="search"/>
-						<div className="inspection-date">{month} &#183; {day} &#183; {year}</div>
 					</div>
+					<hr/>	
 				</CardBody>
-				
+				<CardBody style={{height:"300px",overflowY:"scroll"}}>
+					<CardText style={{fontSize:"1.1em", color:"grey"}}>Inspections</CardText>
+					{Inspections}
+				</CardBody>
 			</Card>
 		);
 	}

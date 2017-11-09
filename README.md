@@ -14,6 +14,7 @@ A user can search through a database of over 28k restaurants
 * The 2 separate pages (**main** and **search results**) are managed by a *search* boolean contained in the Main state. I used the *Thomas* logo as a means of returning to the main screen.
 * The address is populated with the *boro* instead of the *city* because the database does not return the city
 * The ‘Cost’ indicator of the restaurant has been hardcoded into the design, as this is something the database does not contain. Down the road, this could be accomplished by interfacing with the Yelp public API. The **Price** sort button now commits no actions
+* I found the **Cabin** Google Font and it was as close to the true font as I could find, and looked nicer than Arial
 
 ## Extras
 * I have added a ‘Z’ image I created in Photoshop to associate with restaurants that have a Z letter grade

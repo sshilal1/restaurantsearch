@@ -32,17 +32,19 @@ class Main extends React.Component {
 	searchRestaurants(searchtext) {
 		console.log("searching for:", searchtext);
 		this.setState({
-			searchtext : searchtext,
-			search : true
+			searchtext : searchtext
 		})
 		axios.post('http://localhost:4000/search', {
 			text: searchtext
 		})
 		.then( (response) => {
 			console.log(response.data);
-			this.setState({
-				restaurants : response.data
-			})
+			if (response.data.length > 0) {
+				this.setState({
+					restaurants : response.data,
+					search : true
+				})
+			}
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -52,7 +54,6 @@ class Main extends React.Component {
 	render() {
 
 		const { restaurants, search, searchtext } = this.state;
-		
 
 		return (
 			<div>	

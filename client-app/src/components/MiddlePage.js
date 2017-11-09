@@ -30,14 +30,14 @@ class MiddlePage extends React.Component {
 		const { restaurants, search } = this.props;
 		const len = restaurants.length;
 
-		if (search) {
+		if (search && len>0) {
 			
 			var CardRows = [];
 			var Restaurants = [];
 			for (let i=0; i<len; i++) {
 				Restaurants.push(restaurants[i]);
 				if (i%3 === 2 || i === (len-1)) {
-					CardRows.push(<CardRow restaurants={Restaurants}></CardRow>)
+					CardRows.push(<CardRow key={i} restaurants={Restaurants}></CardRow>)
 					Restaurants = [];
 				}
 			}
@@ -48,7 +48,7 @@ class MiddlePage extends React.Component {
 				<div className="container">
 							<Button className="sort-button" onClick={this.sortGrade} style={{marginLeft: 0}}>Grade  &#9650;</Button>
 							<Button className="sort-button">Price  &#9660;</Button>
-							<div style={{display:"inline-block", float:"right"}}>{viewString}</div>
+							<div className="view-counter">{viewString}</div>
 						{CardRows}
 				</div>
 			);
