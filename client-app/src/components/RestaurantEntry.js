@@ -11,8 +11,8 @@ class RestaurantEntry extends Component {
 		var standard = grade === 'Not Yet Graded' ? 'GP' : grade;
 		var rank = require('../images/letters/'+standard.toLowerCase()+'.png');
 		var dollars = '$'.repeat(3);
-		var number = `(${phone.substring(0,3)}) - ${phone.substring(3,6)} - ${phone.substring(6,10)}`;
-		var address = `${building} ${street}, ${boro}, NY ${zipcode}`;
+		var number = `(${phone.substring(0,3)}) ${phone.substring(3,6)}-${phone.substring(6,10)}`;
+		var address = titleCase(`${building} ${street}, ${boro}`) + `, NY ${zipcode}`;
 		var day = gradeDate.substring(8,10);
 		var month = gradeDate.substring(5,7);
 		var year = gradeDate.substring(0,4);
@@ -28,7 +28,7 @@ class RestaurantEntry extends Component {
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
 				<CardBody>
-					<h6 style={{fontWeight:"bold",color:"#14608a"}}>{name}</h6>
+					<h6 style={{fontWeight:"bold",color:"#14608a"}}>{titleCase(name)}</h6>
 					<CardText style={{...textStyle, color:"grey"}}>{cuisine} &middot; {dollars}</CardText>
 					<CardText style={textStyle}>{address}</CardText>
 					<CardText style={textStyle}>{number}</CardText>
@@ -42,6 +42,14 @@ class RestaurantEntry extends Component {
 			</Card>
 		);
 	}
+}
+
+function titleCase(str) {
+	str = str.toLowerCase().split(' ');
+	for (var i = 0; i < str.length; i++) {
+		str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); 
+	}
+	return str.join(' ');
 }
 
 export default RestaurantEntry;
