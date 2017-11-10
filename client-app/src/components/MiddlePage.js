@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Jumbotron, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Button, Jumbotron } from 'reactstrap';
+import Pagination from 'react-js-pagination';
 
 import CardRow from './CardRow';
 import bgimage from '../images/image_7.jpg';
@@ -15,21 +16,25 @@ class MiddlePage extends React.Component {
 		super(props);
 		this.state = {
 			gradeorder: "asc",
-			popoverOpen: false
+			popoverOpen: false,
+			activePage: 1
 		}
 
 		this.sortGrade = this.sortGrade.bind(this);
+		this.handlePageChange = this.handlePageChange.bind(this);
 	}
 
 	sortGrade() {
 		const order = this.state.gradeorder;
 		var nextorder = (order === "asc" ? "desc" : "asc");
-
 		this.setState({
 			gradeorder: nextorder
 		})
-
 		this.props.sortGrade(nextorder);
+	}
+
+	handlePageChange(pageNumber) {
+		this.props.changePage(pageNumber);
 	}
 
 	render() {
@@ -37,8 +42,8 @@ class MiddlePage extends React.Component {
 		const { restaurants, search, totalresults } = this.props;
 		const len = restaurants.length;
 
-		if (search && len>0) {
-			
+		if (search && len>0) {		
+			// This block puts the results in CardRows using the native 'card-deck' bootstrap class
 			var CardRows = [];
 			var Restaurants = [];
 			for (let i=0; i<len; i++) {
@@ -50,7 +55,8 @@ class MiddlePage extends React.Component {
 			}
 			
 			var gradeDirection = (this.state.gradeorder === "asc" ? String.fromCharCode(0x25BC) : String.fromCharCode(0x25B2))
-			var viewString = `Viewing 1-12 of ${totalresults}`;
+			var startnum = ((this.props.page - 1) * 12) + 1;
+			var viewString = `Viewing ${startnum}-${startnum+11} of ${totalresults}`;
 
 			return (
 				<div className="container">
@@ -58,20 +64,18 @@ class MiddlePage extends React.Component {
 					<Button className="sort-button">Price  &#9660;</Button>
 					<div className="view-counter">{viewString}</div>
 					{CardRows}
-					<Pagination>
-						<PaginationItem disabled>
-							<PaginationLink previous href="#" />
-						</PaginationItem>
-						<PaginationItem active>1</PaginationItem>
-						<PaginationItem>2</PaginationItem>
-						<PaginationItem>3</PaginationItem>
-					</Pagination>
+					<Pagination
+						activePage={this.props.page}
+						itemsCountPerPage={12}
+						totalItemsCount={totalresults}
+						pageRangeDisplayed={10}
+						onChange={this.handlePageChange}
+					/>
 				</div>
 			);
 		}
 
 		else {
-
 			var bgStyle = {
 				backgroundImage : "url(" + bgimage + ")",
 				backgroundPosition : "64%"
