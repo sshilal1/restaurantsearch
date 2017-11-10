@@ -56,7 +56,8 @@ class MiddlePage extends React.Component {
 			
 			var gradeDirection = (this.state.gradeorder === "asc" ? String.fromCharCode(0x25BC) : String.fromCharCode(0x25B2))
 			var startnum = ((this.props.page - 1) * 12) + 1;
-			var viewString = `Viewing ${startnum}-${startnum+11} of ${totalresults}`;
+			var endnum = (startnum+11 < totalresults) ? startnum + 11 : totalresults;
+			var viewString = `Viewing ${startnum}-${endnum} of ${totalresults}`;
 
 			return (
 				<div className="container">
