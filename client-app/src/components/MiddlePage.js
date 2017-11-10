@@ -34,7 +34,7 @@ class MiddlePage extends React.Component {
 
 	render() {
 
-		const { restaurants, search } = this.props;
+		const { restaurants, search, totalresults } = this.props;
 		const len = restaurants.length;
 
 		if (search && len>0) {
@@ -50,7 +50,7 @@ class MiddlePage extends React.Component {
 			}
 			
 			var gradeDirection = (this.state.gradeorder === "asc" ? String.fromCharCode(0x25BC) : String.fromCharCode(0x25B2))
-			var viewString = `Viewing 1-12 of ${len}`;
+			var viewString = `Viewing 1-12 of ${totalresults}`;
 
 			return (
 				<div className="container">

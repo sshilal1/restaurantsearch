@@ -12,21 +12,26 @@ class Main extends React.Component {
 		super();
 		this.state = {
 			restaurants: [],
+			totalresults : "loading...",
 			searchtext : "",
-			search : false
+			search : false,
+			page : 0
 		}
 
 		this.searchRestaurants = this.searchRestaurants.bind(this);
 		this.returnHome = this.returnHome.bind(this);
 		this.sortByGrade = this.sortByGrade.bind(this);
+		this.nextPage = this.nextPage.bind(this);
 	}
 
 	// This function returns the user to the home page by clearing all state variables
 	returnHome() {
 		this.setState({
 			restaurants: [],
+			totalresults : "loading...",
 			searchtext : "",
-			search : false
+			search : false,
+			page : 0
 		})
 	}
 
@@ -56,10 +61,11 @@ class Main extends React.Component {
 	}
 
 	searchRestaurants(searchtext) {
-		console.log("searching for:", searchtext);
+
 		this.setState({
 			searchtext : searchtext
 		})
+
 		axios.post('http://localhost:4000/search', {
 			text: searchtext
 		})
@@ -67,9 +73,37 @@ class Main extends React.Component {
 			console.log(response.data);
 			this.setState({
 				restaurants : response.data,
-				search : true
+				search : true,
+				page : 1
 			})
 			this.sortByGrade("asc");
+
+			return axios.post('http://localhost:4000/count', {
+				text: searchtext
+			})
+		})
+		.then( (response) => {
+			console.log(response.data);
+			this.setState({
+				totalresults : response.data
+			})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	nextPage(page) {
+		page = 2;
+		var uri = 'http://localhost:4000/page?search=' + this.state.searchtext + '&page=' + page;
+
+		axios.get(uri)
+		.then( (response) => {
+			console.log(response);
+			this.setState({
+				restaurants : response.data,
+				page : page
+			})
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -78,13 +112,14 @@ class Main extends React.Component {
 
 	render() {
 
-		const { restaurants, search, searchtext } = this.state;
+		const { restaurants, search, searchtext, totalresults } = this.state;
 
 		return (
-			<div>	
+			<div>
+				<button style={{width: "100px", height: "100px"}} onClick={this.nextPage}/>
 				<ThomasBar search={search} searchtext={searchtext} onSearch={this.searchRestaurants} returnHome={this.returnHome}/>
 				<Searcher search={search} searchtext={searchtext} onSearch={this.searchRestaurants}/>
-				<MiddlePage search={search} restaurants={restaurants} sortGrade={this.sortByGrade}/>
+				<MiddlePage search={search} restaurants={restaurants} totalresults={totalresults} sortGrade={this.sortByGrade}/>
 				<ThomasBar returnHome={this.returnHome}/>
 			</div>
 		);

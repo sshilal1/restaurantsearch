@@ -5,17 +5,32 @@ mongoose.connect(dburi);
 
 var Restaurants = require('./restaurantModel.js');
 
-var getDbObjects = function(searchtext) {
-	return new Promise((resolve,reject) => {
+var getCount = function(searchtext) {
+	return new Promise((resolve,reject) => {		
+		var searchstring = ".*" + searchtext.toLowerCase() + ".*";
 		
+		Restaurants
+			.find({searchText: {$regex : searchstring}})
+			.exec(function(err, results) {
+				if (err) reject(err);
+				else {
+					var len = results.length.toString();
+					resolve(len)
+				}
+			});
+	})
+}
+
+var getDbObjects = function(searchtext,skip) {
+	return new Promise((resolve,reject) => {		
 		var searchstring = ".*" + searchtext.toLowerCase() + ".*";
 		
 		Restaurants
 			.find({searchText: {$regex : searchstring}})
 			.limit(12)
+			.skip(skip)
 			.exec(function(err, results) {
 				if (err) reject(err);
-				
 				else {
 					resolve(results)
 				}
@@ -33,10 +48,39 @@ app.use(bodyParser.json());
 app.post('/search', function (req,res) {
 	var myobj = req.body;
 	console.log("got a request for", myobj.text);
-	getDbObjects(myobj.text)
+
+	getDbObjects(myobj.text,0)
+	.then(function(first) {
+		res.send(first);
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+})
+
+app.post('/count', function (req,resp) {
+	var myobj = req.body;
+	getCount(myobj.text)
+	.then(function(count) {
+		resp.send(count);
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+})
+
+app.get('/page', function (req,res) {
+
+	var text = req.query.search;
+	var skip = parseInt(req.query.page,10) * 12;
+
+	getDbObjects(text,skip)
 	.then(function(result) {
 		res.send(result);
 	})
+	.catch(function (error) {
+		console.log(error);
+	});
 })
 
 app.listen(4000, function() {
