@@ -36,6 +36,10 @@ body {
 	border-radius: 0;
 }
 
+.card-body-text {
+	height: 150px;
+}
+
 .rank-box {
 	position: absolute;
 	top: calc(50% - 70px);
@@ -46,6 +50,10 @@ body {
 	border: black;
 	box-shadow: 2px 3px 7px grey;
 	align-items: center;
+}
+
+.mini-rankn-box {
+	width: 130px;
 }
 
 .rank-img {
@@ -201,13 +209,42 @@ body {
 	display: none;
 }
 
-@media (max-width: 576px) {
-	.card-columns {
-		column-count: 2;
-	}
+@media only screen and (max-width: 576px) {
 	.view-counter {
 		display:inline-block;
 		float: none;
+	}
+	.restaurant-pop {
+		position: fixed;
+		width: 400px;
+		height: 700px;
+		left: calc(50% - 200px);
+		top: 0;
+		z-index: 11;
+		zoom: 75%;
+	}
+	.home-searcher {
+		height: auto;
+	}
+	.big-box {
+		margin:10px;
+	}
+	.form-group {
+		display: flex;
+		justify-content: center;
+	}
+	#search-bar, #search-button {
+		width: auto;
+		margin:10px;
+	}
+	.mini-rank-box {
+		width: 80px;
+	}
+	.card-body-text {
+		height: 250px;
+	}
+	h1 {
+		width: 70%;
 	}
 }
 

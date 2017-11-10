@@ -91,19 +91,19 @@ class MiddlePage extends React.Component {
 				<Jumbotron className="wide home-searcher" style={bgStyle}>
 					<div className="container">
 						<div className="row">
-							<div className="col-3 flex"><div className="big-box flex">
+							<div className="col-md-3 flex"><div className="big-box flex">
 								<img className="big-rank-img seal" src={seal} alt="search"/>
 								<img className="big-rank-img a" src={a} alt="search"/>
 							</div></div>
-							<div className="col-3 flex"><div className="big-box flex">
+							<div className="col-md-3 flex"><div className="big-box flex">
 								<img className="big-rank-img seal" src={seal} alt="search"/>
 								<img className="big-rank-img b" src={b} alt="search"/>
 							</div></div>
-							<div className="col-3 flex"><div className="big-box flex">
+							<div className="col-md-3 flex"><div className="big-box flex">
 								<img className="big-rank-img seal" src={seal} alt="search"/>
 								<img className="big-rank-img c" src={c} alt="search"/>
 							</div></div>
-							<div className="col-3 flex"><div className="big-box flex">
+							<div className="col-md-3 flex"><div className="big-box flex">
 								<img className="big-rank-img seal" src={seal} alt="search"/>
 								<img className="big-rank-img b" src={gp} alt="search"/>
 							</div></div>

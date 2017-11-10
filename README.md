@@ -30,6 +30,7 @@ This is a single page, full stack application that helps a user search through a
 	* Unfortunately, I decided too late to look into a more secure state management with React such as Flux.
 	* This project currently uses a combination of *passing props* and *setStates* within components to handle state changes. One of the major benefits of Flux is that it allows the user to commits state-altering actions directly from any component, as oppossed to my current setup where I have to pass functions as props from the parent through multiple layers of components.
 	* This would be the first thing to change down the road, as it makes any project scalable and easier to add new components/features to.
+* Optimized for mobile phones with responsive media queries!
 
 ## Extras
 * I have added a ‘Z’ image I created in Photoshop to associate with restaurants that have a Z letter grade

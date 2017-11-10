@@ -31,12 +31,12 @@ class RestaurantPopup extends Component {
 				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
-				<CardBody style={{height:"150px"}}>
+				<CardBody className="card-body-text">
 					<h1 style={{fontWeight:"bold",color:"#00334d"}}>{titleCase(name)}</h1>
 					<CardText style={{...textStyle, color:"grey"}}>{cuisine} &middot; {dollars}</CardText>
 					<CardText style={textStyle}>{address}</CardText>
 					<CardText style={textStyle}>{number}</CardText>
-					<div className="rank-box flex" style={{boxShadow:"none",top:"calc(50% - 90px)",left: "calc(90% - 60px)"}}>
+					<div className="rank-box mini-rank-box flex" style={{boxShadow:"none",top:"calc(50% - 90px)",left: "calc(90% - 60px)"}}>
 						<img className="rank-img seal" src={seal} alt="search"/>
 						<img className={classn} src={rank} alt="search"/>
 					</div>
