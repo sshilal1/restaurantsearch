@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
-const cors = require('cors')
+const cors = require('cors');
+const fs = require('fs');
+if (!fs.existsSync('./dburi.js')) {
+	throw "Error: Please include DB config file 'dburi.js'...";
+}
+
 const dburi = require('./dburi');
 mongoose.connect(dburi);
 

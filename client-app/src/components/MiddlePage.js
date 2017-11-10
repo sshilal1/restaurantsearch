@@ -16,8 +16,7 @@ class MiddlePage extends React.Component {
 		super(props);
 		this.state = {
 			gradeorder: "asc",
-			popoverOpen: false,
-			activePage: 1
+			popoverOpen: false
 		}
 
 		this.sortGrade = this.sortGrade.bind(this);
@@ -30,10 +29,12 @@ class MiddlePage extends React.Component {
 		this.setState({
 			gradeorder: nextorder
 		})
+		// Tell parent (Main) to sort restaurants
 		this.props.sortGrade(nextorder);
 	}
 
 	handlePageChange(pageNumber) {
+		// Tell parent (Main) to change page
 		this.props.changePage(pageNumber);
 	}
 
@@ -81,7 +82,6 @@ class MiddlePage extends React.Component {
 		}
 
 		else if (!search) {
-
 			var bgStyle = {
 				backgroundImage : "url(" + bgimage + ")",
 				backgroundPosition : "64%"

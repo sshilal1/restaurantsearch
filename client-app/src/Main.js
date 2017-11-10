@@ -66,19 +66,20 @@ class Main extends React.Component {
 			searchtext : searchtext
 		})
 
+		// First we get a quick response to populate the page with results
 		axios.post('http://localhost:4000/search', {
 			text: searchtext
 		})
 		.then( (response) => {
 			console.log(response.data);
-			//if (response.data.length > 0) {
-				this.setState({
-					restaurants : response.data,
-					search : true,
-					page : 1
-				})
-				this.sortByGrade("asc");
-			//}
+			this.setState({
+				restaurants : response.data,
+				search : true,
+				page : 1
+			})
+			this.sortByGrade("asc");
+
+			// THEN we query for the FULL count of results, so react can process the page numbers
 			return axios.post('http://localhost:4000/count', {
 				text: searchtext
 			})
@@ -95,8 +96,8 @@ class Main extends React.Component {
 	}
 
 	changePage(page) {
+		// Generate a GET uri with query parameters
 		var uri = 'http://localhost:4000/page?search=' + this.state.searchtext + '&page=' + page;
-
 		axios.get(uri)
 		.then( (response) => {
 			console.log(response);
