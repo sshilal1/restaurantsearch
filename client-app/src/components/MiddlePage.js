@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Jumbotron } from 'reactstrap';
+import { Button, Jumbotron, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 import CardRow from './CardRow';
 import bgimage from '../images/image_7.jpg';
@@ -54,10 +54,18 @@ class MiddlePage extends React.Component {
 
 			return (
 				<div className="container">
-							<Button className="sort-button" onClick={this.sortGrade} style={{marginLeft: 0}}>Grade {gradeDirection}</Button>
-							<Button className="sort-button">Price  &#9660;</Button>
-							<div className="view-counter">{viewString}</div>
-						{CardRows}
+					<Button className="sort-button" onClick={this.sortGrade} style={{marginLeft: 0}}>Grade {gradeDirection}</Button>
+					<Button className="sort-button">Price  &#9660;</Button>
+					<div className="view-counter">{viewString}</div>
+					{CardRows}
+					<Pagination>
+						<PaginationItem disabled>
+							<PaginationLink previous href="#" />
+						</PaginationItem>
+						<PaginationItem active>1</PaginationItem>
+						<PaginationItem>2</PaginationItem>
+						<PaginationItem>3</PaginationItem>
+					</Pagination>
 				</div>
 			);
 		}

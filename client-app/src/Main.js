@@ -116,7 +116,6 @@ class Main extends React.Component {
 
 		return (
 			<div>
-				<button style={{width: "100px", height: "100px"}} onClick={this.nextPage}/>
 				<ThomasBar search={search} searchtext={searchtext} onSearch={this.searchRestaurants} returnHome={this.returnHome}/>
 				<Searcher search={search} searchtext={searchtext} onSearch={this.searchRestaurants}/>
 				<MiddlePage search={search} restaurants={restaurants} totalresults={totalresults} sortGrade={this.sortByGrade}/>
