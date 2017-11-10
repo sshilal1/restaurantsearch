@@ -184,12 +184,21 @@ body {
 	margin-left: -1px;
 }
 
-.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
 	z-index: 3;
 	color: #fff;
 	background-color: #337ab7;
 	border-color: #337ab7;
 	cursor: default;
+}
+
+.hidden {
+	display: none;
 }
 
 @media (max-width: 576px) {

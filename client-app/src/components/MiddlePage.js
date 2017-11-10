@@ -42,7 +42,7 @@ class MiddlePage extends React.Component {
 		const { restaurants, search, totalresults } = this.props;
 		const len = restaurants.length;
 
-		if (search && len>0) {		
+		if (search && len > 0) {		
 			// This block puts the results in CardRows using the native 'card-deck' bootstrap class
 			var CardRows = [];
 			var Restaurants = [];
@@ -65,6 +65,10 @@ class MiddlePage extends React.Component {
 					<div className="view-counter">{viewString}</div>
 					{CardRows}
 					<Pagination
+						firstPageText="First"
+						lastPageText="Last"
+						prevPageText="Prev"
+						nextPageText="Next"
 						activePage={this.props.page}
 						itemsCountPerPage={12}
 						totalItemsCount={totalresults}
@@ -75,7 +79,8 @@ class MiddlePage extends React.Component {
 			);
 		}
 
-		else {
+		else if (!search) {
+
 			var bgStyle = {
 				backgroundImage : "url(" + bgimage + ")",
 				backgroundPosition : "64%"
@@ -103,6 +108,15 @@ class MiddlePage extends React.Component {
 							</div></div>
 						</div>
 					</div>
+				</Jumbotron>
+			);
+		}
+
+		else {
+			return (
+				<Jumbotron>
+					<div style={{fontSize:"5em",textAlign:"center"}}>No Results</div>
+					<div style={{fontSize:"3em",textAlign:"center"}}>Please try a new search</div>
 				</Jumbotron>
 			);
 		}

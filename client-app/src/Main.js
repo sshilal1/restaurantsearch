@@ -12,7 +12,7 @@ class Main extends React.Component {
 		super();
 		this.state = {
 			restaurants: [],
-			totalresults : 0,
+			totalresults : 'loading...',
 			searchtext : "",
 			search : false,
 			page : 1
@@ -31,7 +31,7 @@ class Main extends React.Component {
 			totalresults : "loading...",
 			searchtext : "",
 			search : false,
-			page : 0
+			page : 1
 		})
 	}
 
@@ -71,13 +71,14 @@ class Main extends React.Component {
 		})
 		.then( (response) => {
 			console.log(response.data);
-			this.setState({
-				restaurants : response.data,
-				search : true,
-				page : 1
-			})
-			this.sortByGrade("asc");
-
+			//if (response.data.length > 0) {
+				this.setState({
+					restaurants : response.data,
+					search : true,
+					page : 1
+				})
+				this.sortByGrade("asc");
+			//}
 			return axios.post('http://localhost:4000/count', {
 				text: searchtext
 			})
@@ -125,5 +126,3 @@ class Main extends React.Component {
 }
 
 export default Main;
-
-//<button style={{width: "100px", height: "100px"}} onClick={this.searchRestaurants}/>

@@ -72,7 +72,7 @@ app.post('/count', function (req,resp) {
 app.get('/page', function (req,res) {
 
 	var text = req.query.search;
-	var skip = parseInt(req.query.page,10) * 12;
+	var skip = ((parseInt(req.query.page,10) - 1) * 12) + 1;
 
 	getDbObjects(text,skip)
 	.then(function(result) {
