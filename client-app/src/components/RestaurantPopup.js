@@ -28,7 +28,7 @@ class RestaurantPopup extends Component {
 
 		return (
 			<Card style={{border: "none"}}>
-				<div style={{width:"100%",maxHeight:"250px", overflow:"hidden"}}>
+				<div className="card-image-container">
 					<CardImg className="wide" src={imageUrl} alt="Card image cap" />
 				</div>
 				<CardBody className="card-body-text">
