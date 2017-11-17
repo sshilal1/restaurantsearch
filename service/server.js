@@ -47,8 +47,13 @@ var express = require('express');
 var app = express();
 
 var bodyParser = require('body-parser');
+app.use(express.static('build'))
 app.use(cors());
 app.use(bodyParser.json());
+
+app.get('/', function(req,res) {
+	res.sendFile('index.html', { root: __dirname})
+});
 
 app.post('/search', function (req,res) {
 	var myobj = req.body;
