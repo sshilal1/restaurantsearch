@@ -67,7 +67,7 @@ class Main extends React.Component {
 		})
 
 		// First we get a quick response to populate the page with results
-		axios.post('http://localhost:8008/search', {
+		axios.post('http://localhost:3005/search', {
 			text: searchtext
 		})
 		.then( (response) => {
@@ -80,7 +80,7 @@ class Main extends React.Component {
 			this.sortByGrade("asc");
 
 			// THEN we query for the FULL count of results, so react can process the page numbers
-			return axios.post('http://localhost:8008/count', {
+			return axios.post('http://localhost:3005/count', {
 				text: searchtext
 			})
 		})
@@ -97,7 +97,7 @@ class Main extends React.Component {
 
 	changePage(page) {
 		// Generate a GET uri with query parameters
-		var uri = 'http://localhost:8008/page?search=' + this.state.searchtext + '&page=' + page;
+		var uri = 'http://localhost:3005/page?search=' + this.state.searchtext + '&page=' + page;
 		axios.get(uri)
 		.then( (response) => {
 			console.log(response);
